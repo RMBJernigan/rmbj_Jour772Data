@@ -107,7 +107,7 @@ We can examine the summary data in the environment window, or open it up like a 
 
 The glimpse() function is useful to get a sense of the data.
 
-```{r}
+```{r} 
 
 glimpse(arcos_wv_mingo)
 
