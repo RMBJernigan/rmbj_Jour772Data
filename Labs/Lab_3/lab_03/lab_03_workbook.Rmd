@@ -90,7 +90,7 @@ allowfullscreen = FALSE, query = NULL)
 **Task (Edit and Run Code)**: In the codeblock below, edit code as instructed in the previous video to load death rate data.
 
 ```{r}
-covid_county_monthly_death_rate <- read_csv()
+covid_county_monthly_death_rate <- read_csv("data/covid_county_monthly_death_rate.csv")
 ```
 
 ## Examining data with glimpse()
@@ -100,11 +100,15 @@ Now that we've loaded data in, there are several ways to get a general overview 
 **Task (Edit code)**:  In the empty codeblock below, edit the existing code to glimpse the covid case rate dataframe. You'll need to add the name of the dataframe inside the glimpse function. 
 ```{r}
 
-glimpse()
+glimpse(covid_county_monthly_case_rate)
 
 ```
 
 **Task (Create a Codeblock and Write Code):** Create a new codeblock below. Inside of it, write the code necessary to glimpse the covid DEATH rate dataframe.
+```{r}
+
+glimpse(covid_county_monthly_death_rate)
+```
 
 **Task (Watch Video)**: Watch the video below, and I'll review the correct answers to the glimpse function codeblocks, and review two other common methods for getting a sense of data.
 
@@ -157,7 +161,7 @@ covid_maryland_august_case_rate <- covid_county_monthly_case_rate %>%
 covid_maryland_august_case_rate
 
 # Q: Which Maryland county had the highest case rate on August 30? What was the case rate (cases per 1000)?
-# A: (Put the answer here)
+# A: Prince's George's
 
 ```
 
@@ -173,7 +177,7 @@ covid_maryland_august_case_rate
 
 covid_virginia_august_case_rate <- covid_county_monthly_case_rate %>%
   select(county, state, d_2020_08_30) %>%
-  filter() %>%
+  filter(state == "Virginia") %>%
   arrange(d_2020_08_30)
 
 # This code displays the results of the code we created above in the markdown document
@@ -181,7 +185,7 @@ covid_virginia_august_case_rate <- covid_county_monthly_case_rate %>%
 covid_virginia_august_case_rate
 
 # Q: Which Virginia county had the highest case rate on August 30? What was the case rate (cases per 1000)?
-# A: 
+# A: Bath
 
 ```
 
@@ -231,7 +235,7 @@ covid_four_plus_august_death_rate <- covid_county_monthly_death_rate %>%
 covid_four_plus_august_death_rate
 
 # Q: "How many areas in the U.S. had a death rate above 4 per 1,000 in August? Which ones were they?"
-# A: 
+# A: 2: Hancock, GA & Galax City, VA
 
 ```
 
@@ -261,7 +265,7 @@ covid_maryland_one_plus_august_death_rate <- covid_county_monthly_death_rate %>%
 covid_maryland_one_plus_august_death_rate
 
 # Q: "Which Maryland counties had a death rate higher than 1 per 1,000 in August?"
-# A: 
+# A: Kent 
 
 
 ```
@@ -278,7 +282,7 @@ covid_maryland_one_plus_august_death_rate
 
 covid_virginia_one_plus_august_death_rate <- covid_county_monthly_death_rate %>%
   select(county, state, d_2020_08_30) %>%
-  filter() %>%
+  filter(state =="Virginia", d_2020_08_30 > 2) %>%
   arrange(desc(d_2020_08_30))
 
 # This code displays the results of the code we created above in the markdown document
@@ -286,7 +290,7 @@ covid_virginia_one_plus_august_death_rate <- covid_county_monthly_death_rate %>%
 covid_virginia_one_plus_august_death_rate
 
 # Q: "Which Virginia areas had a death rate higher than 2 per 1,000 in August? 
-# A: 
+# A: Galax City, Emporia City, Northampton
 
 ```
 
@@ -339,7 +343,7 @@ covid_county_jul_aug_change <- covid_county_monthly_case_rate %>%
 covid_county_jul_aug_change
 
 # Q: "Which county had the biggest jump in cumulative case rate between July and August?" 
-# A: 
+# A: Lafayette
 
 ```
 
