@@ -246,6 +246,9 @@ stephanie_daily_min_max
 Okay, now it's your turn to examine Michael's house and answer some questions.  
 
 **Task (Create a codeblock, write and run)**: 
+```{r}
+michael_day_hourly_averages
+```
 
 Create a codeblock and write code necessary to output a **single table** that groups and summarizes to do the following:
 
@@ -255,11 +258,29 @@ Create a codeblock and write code necessary to output a **single table** that gr
   * maximum heat index value on that day 
   * minimum heat index value on that day 
   * the average heat index value on that day 
-  * the number of hourly readings on that day 
+  * the number of hourly readings on that day
 
+```{r}
+michael_day_hourly_averages <- michael_day_hourly_averages %>%
+  mutate(date = date(date_hour)) %>%
+  select(date, everything()) %>%
+  filter(date >= "2019-07-16") %>%
+  filter(date <= "2019-07-22")
+
+michael_daily <- michael_day_hourly_averages %>%
+  group_by(date) %>%
+  summarise(heat_index_max=max(mean_indoor_heat_index),
+            heat_index_min=min(mean_indoor_heat_index),
+            average_heat_index= mean(mean_indoor_heat_index),
+            count = n()
+  )
+
+michael_daily
+```
 That should allow you to answer the following questions:
 
 * Q: What was the highest heat index value measured in Michael's house? On what day did it occur?
+A:
 * Q: The heat index never fell below what value during the period we measured? 
 * Q: What was the average heat index value on each day during the period measured? 
 * Q: Is there anything concerning the number of hourly readings on each day that could affect the results you're getting?
