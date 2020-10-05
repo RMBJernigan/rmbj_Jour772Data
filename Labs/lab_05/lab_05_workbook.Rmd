@@ -334,7 +334,7 @@ Edit the code as instructed, read the comments, and edit the comment at the end 
 # Then, it sorts the newly created dataframe from lowest to highest on total_deaths.
 # That's what it's supposed to do..but it has two errors you need to fix, detailed above.
 least_covid_deaths_state <- covid_county %>%
-  group_by(stat=) %>%
+  group_by(state) %>%
   summarise(total_deaths = sum(deaths)) %>%
   arrange(total_deaths)
 
@@ -483,17 +483,40 @@ To finish the lab, you have three exercises to complete.
 
 ```{r}
 # Write your code to answer the question below by creating a new object.
+small_counties_per_state <- covid_county %>%
+  group_by(state) %>%
+  summarise(total_counties = n()) %>%
+  arrange(total_counties)
+
+# Display below
+small_counties_per_state 
 
 # Write the name of the object you just created below so it displays below in the markdown document
 
 # Q: which state has the smallest number of counties? 
-# A: write the answer here
+# A: District of Columbia
 
 ```
 
 ### Exercise 2
 
 **Task (Create a Codeblock, Write and Run Code): ** Develop your own question, and write code to answer it below.  It can be anything you like, but be sure to use summarise() in answering your question.
+
+```{r}
+ 
+ state_deaths_in_average_county <- covid_county %>%
+  group_by(state) %>%
+  summarise(deaths_in_average_county = mean(deaths)) %>%
+  arrange(deaths_in_average_county)
+
+# Display below
+state_deaths_in_average_county
+  
+
+
+#Q: What state has the lowest average death per country?
+#A: Alaska
+```
 
 ## You're done
 
