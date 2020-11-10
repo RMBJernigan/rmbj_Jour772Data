@@ -45,6 +45,24 @@ library(lubridate)
 DESCRIPTION OF WHAT THE DATA IS, WHERE YOU GOT IT, LINK IT, WHAT IT INCLUDES, INCLUDING A LIST OF WHAT EACH FIELD IS. 
 
 * age | number | age of driver
+Street Racing Columns
+Age 
+Case Number
+DeathDateTime
+Gender 
+Names
+Race
+Victime ROles
+Full Event Address
+Geocoder address
+
+fatalities
+name
+city 
+population
+geometry 
+
+
 
 ```{r}
 # Comment on what you're loading

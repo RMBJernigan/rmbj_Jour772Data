@@ -218,7 +218,7 @@ deaths_by_year_expanded
  ## AND THEN mutates the victim's class depending on whether the victim's role was that of a suspected racer or not.
  ## AND THEN groups by the victim's class
  ## AND THEN summarizes the deaths by the sum of deaths
- ## AND THEN rearranges the table's appearance by pivoting wider
+ ## AND THEN rearranges the table's appearance by pivoting wider(increasing the number of columns and decreasing the number of rows)
  ## AND THEN mutates total deaths to equal the sum of suspected racers and not suspected racers
  ## AND THEN mutates the percentage of suspected racers to equal suspected racers divided by (total deaths multiplied by 100)
 
