@@ -86,7 +86,16 @@ Now, let's display the data as a bar chart, using another function -  geom_bar()
   # Display the data as a bar chart
 anne_arundel %>%
   ggplot(aes(month, case_rate)) +
-  geom_bar(stat="identity") 
+  geom_bar(stat="identity",
+           fill="steelblue") 
+
+labs(
+  x="Month",
+  y="Cases per 1,000 people",
+  title="In Anne Arundel, steady increases in COVID cases",
+  caption="Source: NYT Covid Cases"
+)+
+  geom_text(aes(label=case_rate))
 
 ```
 ### Continue building the chart
