@@ -100,6 +100,6 @@ ND_only_state_year
 
 ```{r}
 year_2020_only <- drought_data_year_filtered %>%
-  filter(year == "2020") %>%
+  filter(year == "2020")
   summarise(d0-d4_Avg = mean(D0-D4))
 ```

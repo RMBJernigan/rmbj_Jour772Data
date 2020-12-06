@@ -23,6 +23,7 @@ national_year <- read_csv("data/processed/climdiv_national_year.csv")
 county_year <- read_csv("data/processed/climdiv_county_year.csv")
 state_year <- read_csv("data/processed/climdiv_state_year.csv")
 model_state <- read_csv("data/processed/model_state.csv")
+tribal_procounty_ND <- read_csv("data/processed/tribal_data.csv")
 
 ```
 
@@ -58,5 +59,37 @@ model_county_ND_sorted <- model_county %>%
 #Display the new data frame
 model_county_ND_sorted
 #This dataframe arranges counties in North Dakota in descending order by average annual temperature change. The top five counties listed are all in the northernmost part of the state, which poses some questions about what the agriculture is like there, what the terrain is like, what the population and industry is like, and how these are all affected by rising temperatures. Additionally, all top 5 counties have had average annual temperature increases of at least .31 degrees higher than the state average
+
+```
+```{r}
+#This is for the tribes data
+#This chart was created to specifically look at the average change of temperature in the counties that have tribes or nations on the land
+
+tribal_county_ND <- model_county_ND_sorted %>%
+  filter(CTYNAME %in% c("Sioux County", "Benson County", "Richland County" ,"Sargent County","Grant County","McLean County", " Mountrail County", "Dunn County", "McKenzie County", "Mercer County", "Ward County", "Rolette County" ))
+  
+  
+
+#CTYNAME == "Sioux County", "Benson County", "Richland County" ,"Sargent County","Grant County","McLean County", " Mountrail County", "Dunn County", "McKenzie County", "Mercer County", "Ward County", "Rolette County")
+ 
+
+#Display below
+
+tribal_county_ND
+
+```
+
+```{r}
+#This a self made chart about the ProPublica data on the climate change of the different counties around the state. It analysis the rises of the different subs of the data. This is before doing an innerjoin
+
+tribal_procounty_ND 
+  transform(as.numeric(fips))
+
+```
+
+```{r}
+tribal_join_county_ND <- tribal_county_ND  %>%
+  inner_join(tribal_procounty_ND)
+ 
 
 ```
