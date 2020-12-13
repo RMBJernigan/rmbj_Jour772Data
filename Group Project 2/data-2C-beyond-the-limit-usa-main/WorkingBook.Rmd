@@ -37,6 +37,7 @@ model_state_ND_only <- model_state %>%
 model_state_ND_only
 ```
 
+
 ```{r}
 #Create new data frame called model_state_sorted
 model_state_sorted <- model_state %>%
@@ -47,6 +48,16 @@ model_state_sorted
 #North Dakota is the state in the U.S. with the seventh largest rate of annual average temperature change. Each of the states with larger change are confined to one region: New England and the mid-Atlantic. North Dakota stands out as the first state on the list not in that region, but rather much closer to the Pacific coast. Some questions emerge: how does the high rate of temperature change affect crops grown in the state? How does the high rate of temperature change affect the growing season for agriculture in the state? Are there any correlated phenomena (ie. drought, rainfall, weather conditions, etc) that can be observed as a result of the high rate of temperature change? Why is the average annual temperature change in North Dakota more comparable to states in New England rather than other states around North Dakota?
 ```
 
+##Each row has the following variables, according to The Washington Post's series, "2ºC: Beyond the Limit." 
+- `fips` A five digit fips code for the county
+- `CTYNAME` the name of the county
+- `STNAME` the name of the state
+- `Annual` Estimate of annual average temperature change in Celsius for the county, 1895-2019
+- `Fall` temperature change in September, October and November
+- `Spring` temperature change in March, April and May
+- `Summer` temperature change in June, July and August
+- `Winter` temperature change in December and the following January and February
+- `max_warming_season` the season where temperatures are increasing fastest
 ```{r}
 #Create new data frame called model_county_ND_sorted from the model_county dataframe
 model_county_ND_sorted <- model_county %>%
@@ -61,16 +72,17 @@ model_county_ND_sorted
 #This dataframe arranges counties in North Dakota in descending order by average annual temperature change. The top five counties listed are all in the northernmost part of the state, which poses some questions about what the agriculture is like there, what the terrain is like, what the population and industry is like, and how these are all affected by rising temperatures. Additionally, all top 5 counties have had average annual temperature increases of at least .31 degrees higher than the state average
 
 ```
+
+The next two data sets are split into two parts: To show thecounties in North Dakota nad to show the climate change/impact that has happened in these counties.
 ```{r}
-#This is for the tribes data
-#This chart was created to specifically look at the average change of temperature in the counties that have tribes or nations on the land
 
+#This chart was created to specifically look at the average change of temperature in the counties that have tribes or nations in the state. 
+#Tribes in North Dakota: Mandann, Hidatsa, Arikara Nation(Three Affiliated Tribes), Sisseton-Wahpeton Oyate Nation, Spirit Lake Nation, Standing Rock Sioux Tribe, and Turtle Mountain Band of Chippewa Indian
+
+#Create a new data set that only shows the counties that have tribes
 tribal_county_ND <- model_county_ND_sorted %>%
+  #Filter by the different counties in the state that have tribes
   filter(CTYNAME %in% c("Sioux County", "Benson County", "Richland County" ,"Sargent County","Grant County","McLean County", " Mountrail County", "Dunn County", "McKenzie County", "Mercer County", "Ward County", "Rolette County" ))
-  
-  
-
-#CTYNAME == "Sioux County", "Benson County", "Richland County" ,"Sargent County","Grant County","McLean County", " Mountrail County", "Dunn County", "McKenzie County", "Mercer County", "Ward County", "Rolette County")
  
 
 #Display below
@@ -79,17 +91,24 @@ tribal_county_ND
 
 ```
 
-```{r}
-#This a self made chart about the ProPublica data on the climate change of the different counties around the state. It analysis the rises of the different subs of the data. This is before doing an innerjoin
+##This data is from ProPublica in their "New Climate Maps Show a Transformed United States" article that shows the change of climate for different counties in the US. However for this finding wer are only looking at the counties that house tribes on the land
+##According to the Farming Crop Yields Data, By MidCentury, North Dakota will warm enough to allow more growing days and higher yield will have more Corn and Soy production.
+#Each row has the following variables, according the Propublica's series "New Climate Maps Show a Transformed United States" and ranges from 1 to 10
 
+- `fips` A five digit fips code for the county
+- `CTYNAME` the name of the county
+- `STNAME` the name of the state
+- `Heat(&Humidity)` overal heat changes in the county
+- `Wet Bulb` combiniation of heat and humidity 
+- `Farming Crop Yields` analysis of how the farming crops are effected
+- `Sea Level Rise` analysis of the rise of sea levels and properties being surmerged by water
+- `Very Large Fires` analysis of wildfires and damage done to land 
+- `Economic Damages` analysis of damage or benefit from climate change economically
+
+```{r}
+#This a self made chart about the ProPublica data on the climate change of the different counties around the state. In the original dataset, shows  a range from 1 to 10 with 1 not being as alarming or impactful compared to 10 being very impactful and dangerous. Most of the counties in ND stay under a 5 which is good for the state as the change does not impact these counties as much. 
+
+#Display below
 tribal_procounty_ND 
-  transform(as.numeric(fips))
-
-```
-
-```{r}
-tribal_join_county_ND <- tribal_county_ND  %>%
-  inner_join(tribal_procounty_ND)
- 
 
 ```
